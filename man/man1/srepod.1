@@ -1,0 +1,42 @@
+.\" Written by Patrick Hochstenbach <hochsten@lanl.gov>
+.TH srepod 1 "5 December 2002" srepod 
+.SH NAME
+srepod \- a OAI Static Repository Gateway backend daemon 
+.SH SYNOPSIS
+.B srepod
+.SH DESCRIPTION
+This daemon should be up and running when operating a Static Repository (SR) Gateway.  The gateway program will contact this daemon to request an up to date version of a SR to be installed on the system. The registry program will contact this daemon to register a new SR on the system.
+
+To run this daemon the following provisions should be made:
+
+ Create or edit the srepod.conf file [see below];
+
+ Change the directory permissions of the spool directory, db directory according to the uid and gid specified in the srepod.conf file (these directories should be readable, writable and executable by the specified uid and gid);
+
+ Boot the daemon with root privileges.
+ 
+ Use the daemon_start program to boot the daemon.
+
+ Use SIGUSR1 to stop the daemon, see kill(1).
+
+.SH "CONFIGURATION FILE" 
+A srepod.conf file should exists in the same directory where the srepod daeon is installed. This configuration file should contain the following fields:
+
+.IP uid
+the user ID of the process running the gateway.cgi programs.
+.IP gid
+the group ID of the process running the gateway.cgi programs.
+.IP log_file
+the file name of the daemon log file (this should be an absolute path).
+.IP xml_get
+the file name of the program which fetches SR's from the network (this should be an absolute path).
+.IP xml_get_timeout
+the maximum number of seconds xml_get can run.
+.IP xml_get_maxsize
+the maximum number of bytes xml_get will transfer.
+.IP xml_validate
+the file name of the program which validates static repository files (this should be an absolute path).
+.IP xml_transform
+the file name of the program that will transform the SR's into gdbm databases (this should be an absolute path).
+.SH BUGS
+No bugs known at this date. Please mail me <hochsten@lanl.gov> if you find some.

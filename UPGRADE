@@ -1,0 +1,64 @@
+/*
+ * $Id: UPGRADE,v 1.2 2005/07/26 08:39:57 hochstenbach Exp $
+ */
+
+Follow these steps to upgrade a srepod installation.
+
++ Stop the daemon
+
+    $ cd /opt/srepod-2-X-X/bin
+    $ ./daemonctl stop
+
++ Install the new version of srepod
+
+    $ cd /tmp
+    $ gunzip -c srepod-2-X-Y.tar.gz | tar xvf -
+
+    + Optionally edit the src/Makefile to change the INSTDIR (use absolute path, INSTDIR should *not* be the directory where you unpacked the software package)
+
+    $ cd src
+
+    (The following command may need root privileges)
+
+    # make
+    # make install
+
+    + Edit the configuration of your web server. Add a 'gateway' symbolic link 
+    from your cgi-bin directory to the cgi-bin directory of this package. 
+    Add a gateway' symbolic link from your htdocs directory to the htdocs 
+    directory of this package. E.g.
+
+        $ cd /usr/local/apache/cgi-bin
+        $ ln -s /opt/srepod-2-X-X/cgi-bin gateway
+        $ cd /usr/local/apache/htdocs
+        $ ln -s /opt/srepod-2-X-X/htdocs gateway
+
+    + Edit cgi-bin/environ:
+		
+	  ** set the correct GWBASEURL and GWREGISTRY URL's and GWHOME path.
+	  ** set a correct GWADMIN email address
+	  ** set the GWVALIDBASEURL=0 to test your installation, set the
+	     GWVALIDBASEURL=1 in production mode
+
+    + Edit the files ${GWHOME}/htdocs/registry.html and ${GWHOME}/htdocs/terminator.html
+    to reflect the right location of the gateway CGI scripts.
+
+    + Copy the gateway.conf file from the previous version to the new
+    version. E.g.:
+
+        cp /opt/srepod-2-1-1/cgi-bin/gateway.conf /opt/srepod-2-1-2/cgi-bin
+
+    (You can keep the previous version on disk, or also copy the 
+    complete db directory to the new version and edit the paths in the
+    gateway.conf file)
+
+    + Run "sh chmod.sh" as root. Set here the user and group name that 
+    will run cgi scripts. This is normally the 'nobody' user and 'nobody' 
+    group.
+
+    + Start the daemon:
+
+        $ cd /opt/srepod-2-X-X/bin
+	    $ su
+	    # ./deamonctl start
+

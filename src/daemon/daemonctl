@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+# $Id: daemonctl,v 1.2 2006/12/19 08:33:14 hochstenbach Exp $
+#
+# Author(s): Patrick Hochstenbach <Patrick.Hochstenbach@UGent.be>
+#
+source ../cgi-bin/environ
+
+PID=`cat ${GWSPOOL}/srepod.pid 2>&1 /dev/null`
+
+
+case $1 in
+	start)
+		cd ${GWHOME}/bin
+
+		echo "Cleaning up old lock files"
+		rm -f ${GWSPOOL}/lock*
+		echo "Cleaning up old tmp files"
+		rm -f ${GWSPOOL}/tmp*
+		echo "Cleaning up old xml files"
+		rm -f ${GWSPOOL}/xml*
+		echo "Cleaning up old dbf files"
+		rm -f ${GWSPOOL}/dbf*
+
+		echo "Starting daemon"
+		LD_LIBRARY_PATH=${GWHOME}/lib ./srepod
+
+		;;
+	stop)
+	
+		kill -USR1 ${PID}
+
+		if [ $? -eq 0 ] ; then
+			echo "$0 : srepod stopped"
+		else
+			echo "$0 : could not be stopped"
+			exit 2
+		fi
+
+		rm -f ${GWSPOOL}/srepod.pid 
+
+		;;
+	status)
+		ps -ef | grep "[s]repod"
+		;;
+	*)
+		echo "usage: $0 (start|stop|status)"
+		exit 1
+	;;
+esac
+
+exit 0

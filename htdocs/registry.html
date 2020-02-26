@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>OAI Static Repository Gateway</title></head>
+<body> 
+<table>
+  <tr>
+    <td>
+      <a href="http://www.openarchives.org"><img src="/gateway/logo-oai.gif" width="100" height="70" border="0" align="top"></a>
+    </td>
+    <td> 
+      <font face="arial,helvetica,sans-serif">
+      <font size="+3"><b>An OAI Static Repository Gateway</b></font><br />
+      </font>
+    </td>
+  </tr>
+</table>
+
+<font face="arial,helvetica,sans-serif">
+
+<p>
+Welcome! Our Gateway service makes <a href="http://www.openarchives.org/OAI/2.0/guidelines-static-repository.htm">OAI Static Repositories</a> harvestable via the <a href="http://www.openarchives.org/OAI/2.0/guidelines-static-repository.htm">Open Archives Protocol for Metadata Harvesting</a>. 
+It complies to the specification of <a href="http://www.openarchives.org/OAI/2.0/guidelines-static-repository.htm">OAI Static Repository Gateways</a>.
+</p>
+
+<p>
+We need the following information to make your <a href="http://www.openarchives.org/OAI/2.0/guidelines-static-repository.htm">OAI Static Repository</a> harvestable via our Gateway:
+</p>
+
+<form action="/cgi-bin/gateway/registry.cgi" method="GET">
+	
+  <table width="489" border="0">
+    <tr>	
+	  <td height="24" width="481"> 
+	  The network-location (URL) of your OAI Static Repository <br>
+	  <input type="text" name="url" value="$0" size="60" />
+          </td>
+    </tr>
+    <tr>
+	  <td width="481"> The email address of the administrator of your OAI Static Repository<br>
+          <input type="text" name="email" value="$1" size="60" />
+	  </td>
+    </tr>
+    <tr>
+	  <td width="481"> 
+          <input type="submit" value="Submit" />
+	  </td>
+    </tr>
+    </table>
+</form>
+
+<hr>
+<p> 
+OAI Static Repositories can use our Gateway services if they meet the following technical conditions: 
+  <ul>
+    <li><font color="red"><b>The baseURL element of Static Repository Files registered at this gateway must match:
+<br><br>
+http://purl.oclc.org/NET/ugent/lib/srepod/&lt;network address static repository file&gt;<br>
+</br><br></b></font>
+E.g:<br>
+<br>
+&lt;oai:baseURL&gt;<b><a href="http://purl.oclc.org/NET/ugent/lib/srepod/dor2.ugent.be/gateway/vb1.xml">http://purl.oclc.org/NET/ugent/lib/srepod/dor2.ugent.be/gateway/vb1.xml</a></b>&lt;/oai:baseURL&gt;<br>
+
+&lt;oai:baseURL&gt;<b><a href="http://purl.oclc.org/NET/ugent/lib/srepod/dor2.ugent.be/gateway/vbns.xml">http://purl.oclc.org/NET/ugent/lib/srepod/dor2.ugent.be/gateway/vbns.xml</a></b>&lt;/oai:baseURL&gt;<br>
+&lt;oai:baseURL&gt;<i>http://purl.oclc.org/NET/ugent/lib/srepod/somewhere.org/~jdoe/repo.xml</i>&lt;/oai:baseURL&gt;<br>
+<br>
+Examples Static Repository Files:
+<br>
+<br>
+<a href="http://dor2.ugent.be/gateway/vb1.xml">http://dor2.ugent.be/gateway/vb1.xml</a><br>
+<a href="http://dor2.ugent.be/gateway/vbns.xml">http://dor2.ugent.be/gateway/vbns.xml</a><br>
+<br>
+    </li>
+    <li>The OAI Static Repository <b>must</b> conform with the <a href="http://www.openarchives.org/OAI/2.0/guidelines-static-repository.htm">OAI Static Repository specification</a>. Specifically: 
+      <ul>
+        <li> The OAI Static Repository <b>must</b> validate against <a href="http://www.openarchives.org/OAI/2.0/static-repository.xsd">the XML Schema that defines the format for OAI Static Repositories</a>.</li>
+        <li>The network-location of the OAI Static Repository <b>must</b> be an HTTP address, i.e. the network-location <b>must</b> start with '<tt>http://</tt>'. 
+        </li>
+      </ul>
+    </li>
+    <li>In addition, our Gateway imposes the following conditions: 
+      <ul>
+        <li>The network-location of the OAI Static Repository <b>must</b> have 
+          a suffix '<tt>.xml</tt>' , i.e. the network-location <b>must</b> end 
+          on '<tt>.xml</tt>'</li>
+        <li>The network-location of the OAI Static Repository <b>must</b> only 
+          contain characters from the following set: [a-z] [A-Z] [0-9] '/' '+' 
+          '-' '%' '.' ':' '_' '~'</li>
+        <li> The size of the OAI Static Repository <b>must not</b> exceed 2 Mb. 
+        </li>
+      </ul>
+    </li>
+  </ul>
+</p>
+
+<hr />
+<address>The <a href="srepod.sourceforge.net">software</a> for this Gateway service was developed by Patrick Hochstenbach 
+&amp; Henry Jerez, in a project of the Prototyping Team of the Research Library 
+of the Los Alamos National Laboratory. <a href="mailto:hochsten@lanl.gov">Patrick.Hochstenbach@UGent.be</a> - static repository gateway $Name: sr2_1_6 $ 
+</address>
+
+<br />
+
+<table width="100%" border="0">
+  <tr> 
+    <td width="20%"></td>
+  </tr>
+</table>
+
+</font>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>OAI Static Repository Gateway</title>
+<style type="text/css">
+<!--
+td { 
+	font-family: arial,helvetica,sans-serif; 
+	font-size:   12pt;
+}
+
+.menu_item {
+	font-family: arial,helvetica,sans-serif; 
+	font-size:12pt;
+	font-weight:bold;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+.link_item {
+	font-family: arial,helvetica,sans-serif; 
+	color:#990000;
+}
+-->
+</style>
+
+</head>
+<body> 
+<table border="0" cellpadding="5" cellspacing="5" height="600">
+<tr>
+<td valign="top" bgcolor="#ff9933" nowrap>
+<a href="/gateway/"><img src="/gateway/logo-oai.gif" width="100" height="70" border="0" align="top"></a>
+<br>
+<br>
+<a class="menu_item" href="/gateway/">Home</a><br>
+<a class="menu_item" href="submit.html">Register a file</a><br>
+<a class="menu_item" href="vb1.xml">Example file</a><br>
+<a class="menu_item" href="http://purl.oclc.org/NET/ugent/lib/srepod/dor2.ugent.be/gateway/vb1.xml?verb=Identify">Example repository</a><br>
+<a class="menu_item" href="mailto:Patrick.Hochstenbach@ugent.be">Feedback</a><br>
+<hr color="white">
+<a class="menu_item" href="http://www.openarchives.org">Open Archives</a><br>
+<a class="menu_item" href="http://www.openarchives.org/OAI/2.0/guidelines-static-repository.htm">Implementation Guidelines</a><br>
+<a class="menu_item" href="http://srepod.sourceforge.net">Software</a><br>
+<a class="menu_item" href="http://public.lanl.gov/herbertv/papers/jcdl2003-submitted-draft.pdf">Research</a><br>
+</td>
+<td valign="top">
+<font size="+3"><b>OAI Static Repository Gateway</b></font><br>
+
+<p>
+We need the following information to <b>terminate</b> the intermediation of your OAI Static Repository via our Gateway:</p>
+<form action="/cgi-bin/gateway/terminator.cgi" method="GET">
+	
+  <table border="0">
+    <tr>	
+	<td>The network-location (URL) of your OAI Static Repository:<br>
+	<input type="text" name="url" value="$0" size="60" />
+        </td>
+	<td valign="bottom"> 
+        <input type="submit" value="Submit" />
+	</td>
+	</tr>
+	</table>
+</form>
+
+<hr />
+<font size="1">The <a class="link_item" href="http://srepod.sourceforge.net">software</a> for this Gateway service was developed by Patrick Hochstenbach 
+&amp; Henry Jerez, in a project of the Prototyping Team of the Research Library 
+of the Los Alamos National Laboratory. <a class="link_item" href="mailto:hochsten@lanl.gov">Patrick.Hochstenbach@UGent.be</a> - static repository gateway $Name: sr2_1_6 $ 
+</font>
+</td>
+</tr>
+</table>
+</body>
+</html>

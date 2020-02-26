@@ -1,0 +1,93 @@
+#
+# $Id: environ,v 1.9 2006/12/19 08:33:11 hochstenbach Exp $
+#
+
+# Set the email address of the gateway administrator
+export GWADMIN="hochsten@sci.kun.nl"
+
+# Set the baseURL to contact the cgi scripts of the gateway
+export GWBASEURL="http://localhost:8080/cgi-bin/gateway/gateway.cgi"
+
+# Set the URL of the registration page
+export GWREGISTRY="http://localhost:8080/cgi-bin/gateway/registry.cgi"
+
+# Set the URL of the terminator page
+export GWTERMINATOR="http://localhost:8080/cgi-bin/gateway/terminator.cgi"
+
+# Set the base directory of the gateway installation
+export GWHOME="/opt/srepod-2-1-6"
+
+# If you want to include a friends description in the Identify
+# response, the set the path to the configuration file. Otherwise
+# comment this line
+export GWDBFRIENDS="${GWHOME}/cgi-bin/friends.conf"
+
+# Set the path to the gateway configuration file containing 
+# path names to cache files
+export GWDBCONF="${GWHOME}/cgi-bin/gateway.conf"
+
+# Set the path to the gateway description
+export GWDBDESC="${GWHOME}/cgi-bin/desc.conf"
+
+# Set the path to the spool directory containing log files and
+# lock files
+export GWSPOOL="${GWHOME}/spool"
+
+# Set the path to the cache directory
+export GWDBPATH="${GWHOME}/db"
+
+# Set the path's to the registry header and footer templates
+export GWHEADERHTML="${GWHOME}/htdocs/head.html"
+export GWREGISTRYHTML="${GWHOME}/htdocs/registry.html"
+export GWTERMINATORHTML="${GWHOME}/htdocs/terminator.html"
+export GWFOOTERHTML="${GWHOME}/htdocs/foot.html"
+export GWERRORHTML="${GWHOME}/htdocs/error.html"
+
+# Set GWCONFIRM to 0 if you want an automatic registration of
+# static repositories if a initiate request has been recieved.
+# This option will set GWMD5TEST effectively to 0.
+export GWCONFIRM="1"
+
+# Set md5test to 1 if you want that repository administrators confirm
+# the initiazation of a new static repository URL. This test will
+# make it more difficult to write scripts that automatically
+# submit thousands of new static repository URLs to your gateway.
+export GWMD5TEST="1" 
+
+# Set worldaccess to 1 if you don't run the srepod daemon with root
+# privileges. In this case lock files should be created world
+# writable to let all processes accessing them.
+export GWWORLDACCESS="0"
+
+# Set the path to the gateway library directory
+export LD_LIBRARY_PATH=${GWHOME}/lib
+
+# Set the total number of bytes you wan to cache on local disk
+export GWMAXCACHESIZE=209715200
+
+# Set the maximum number of bytes of incomming static repository
+# files
+export GWMAXNETWORKSIZE=2097152
+
+# Set the maximum number of seconds the gateway will wait for 
+# network response
+export GWMAXNETWORKTIME=30
+
+# Set validbaseurl to 1 if you want to check for valid baseURL values
+# in static repository files. From the spec:
+#
+# Static Repository base URL: The base URL that provides access via OAI-PMH 
+# to the contents of the Static Repository through intermediation by a Static
+# Repository Gateway.
+#
+# [Note: we set this value to 0 for debug purposes. A real gateway should 
+# set it to 1]
+export GWVALIDBASEURL=0
+
+# Set DOTERMINATE to 1 if you want to automatically process termination
+# requests from the Web. These request will unregister a Static Repository
+# file at your gateway, delete the cache file and update the friends 
+# description.
+#
+# Note: GWVALIDBASEURL should have value "1" to activate the termination.
+export GWDOTERMINATE=1

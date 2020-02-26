@@ -1,0 +1,126 @@
+<HTML>
+<BODY>
+<PRE>
+<!-- Manpage converted by man2html 3.0.1 -->
+
+</PRE>
+<H2>NAME</H2><PRE>
+     libcurl-multi - how to use the multi interface
+
+
+</PRE>
+<H2>DESCRIPTION</H2><PRE>
+     This  is  an overview on how to use the libcurl multi inter­
+     face in your C programs. There are specific  man  pages  for
+     each  function  mentioned in here. There's also the libcurl-
+     the-guide document for a complete  tutorial  to  programming
+     with  libcurl and the <I>libcurl(3)</I> man page for an overview of
+     the libcurl easy interface.
+
+     All functions in  the  multi  interface  are  prefixed  with
+     curl_multi.
+
+
+</PRE>
+<H2>PLEASE NOTICE</H2><PRE>
+     The  multi  interface  is a rather new member of the libcurl
+     family. It has not yet been very widely used. It  may  still
+     be  a  few  more  bugs lurking in there than we are used to.
+     That said, it might also just work in every aspect  you  try
+     it. Please report all bugs and oddities you see.
+
+
+</PRE>
+<H2>OBJECTIVES</H2><PRE>
+     The  multi  interface  introduces several new abilities that
+     the easy interface refuses to offer. They are mainly:
+
+     1. Enable a "pull"  interface.  The  application  that  uses
+     libcurl  decides  where  and when to ask libcurl to get/send
+     data.
+
+     2. Enable multiple simultaneous transfers in the same thread
+     without making it complicated for the application.
+
+     3.  Enable  the  application  to  select()  on  its own file
+     descriptors and curl's file descriptors simultaneous easily.
+
+
+</PRE>
+<H2>ONE MULTI HANDLE MANY EASY HANDLES</H2><PRE>
+     To  use  the multi interface, you must first create a 'multi
+     handle' with <I>curl</I><B>_</B><I>multi</I><B>_</B><I>init</I>. This handle is  then  used  as
+     input to all further curl_multi_* functions.
+
+     Each  single  transfer  is built up with an easy handle. You
+     must create them, and setup the appropriate options for each
+     easy handle, as outlined in the <I>libcurl(3)</I> man page.
+
+     When  the  easy handle is setup for a transfer, then instead
+     of using <I>curl</I><B>_</B><I>easy</I><B>_</B><I>perform</I> (as when using the easy interface
+     for  transfers),  you  should instead add the easy handle to
+     the multi handle using <I>curl</I><B>_</B><I>easy</I><B>_</B><I>add</I><B>_</B><I>handl</I>. The multi handle
+     is  sometimes  referred to as a ´multi stack´ because of the
+     fact that it may hold a large amount of easy handles.
+
+     Should you change  your  mind,  the  easy  handle  is  again
+     removed from the multi stack using <I>curl</I><B>_</B><I>multi</I><B>_</B><I>remove</I><B>_</B><I>handle</I>.
+     Once removed from the multi handle, you can again use  other
+     easy  interface functions like curl_easy_perform or whatever
+     you think is necessary.
+
+     Adding the easy handles to the multi handle does  not  start
+     any  transfer. Remember that one of the main ideas with this
+     interface is to let your application drive.  You  drive  the
+     transfers  by invoking <I>curl</I><B>_</B><I>multi</I><B>_</B><I>perform</I>. libcurl will then
+     transfer data if there is anything  available  to  transfer.
+     It'll  use  the callbacks and everything else you have setup
+     in the individual easy handles. It'll transfer data  on  all
+     current  transfers  in  the  multi  stack  that are ready to
+     transfer anything. It may be all, it may be none.
+
+     Your application can acquire knowledge from libcurl when  it
+     would  like  to  get  invoked  to transfer data, so that you
+     don't have to busy-loop  and  call  that  <I>curl</I><B>_</B><I>multi</I><B>_</B><I>perform</I>
+     like  a  mad man! <I>curl</I><B>_</B><I>multi</I><B>_</B><I>fdset</I> offers an interface using
+     which you  can  extract  fd_sets  from  libcurl  to  use  in
+     select()  or  poll()  calls in order to get to know when the
+     transfers in the multi stack might need attention. This also
+     makes  it  very  easy  for your program to wait for input on
+     your own private file descriptors at the same time  or  per­
+     haps timeout every now and then, should you want that.
+
+     <I>curl</I><B>_</B><I>multi</I><B>_</B><I>perform</I> stores the number of still running trans­
+     fers in one of its input arguments, and by reading that  you
+     can  figure  out when all the transfers in the multi handles
+     are done. 'done' does not mean successful. One  or  more  of
+     the transfers may have failed.
+
+     To  get information about completed transfers, to figure out
+     success or not and similar, <I>curl</I><B>_</B><I>multi</I><B>_</B><I>info</I><B>_</B><I>read</I>  should  be
+     called.  It can return a message about a current or previous
+     transfer. Repeated invokes of the function get more messages
+     until the message queue is empty.
+
+     When  all transfers in the multi stack are done, cleanup the
+     multi handle with <I>curl</I><B>_</B><I>multi</I><B>_</B><I>cleanup</I>. Be careful and  please
+     note  that  you <B>MUST</B> invoke separate <I>curl</I><B>_</B><I>easy</I><B>_</B><I>cleanup</I> calls
+     on every single easy handle to clean them up properly.
+
+
+
+
+
+
+
+
+
+
+</PRE>
+<HR>
+<ADDRESS>
+Man(1) output converted with
+<a href="http://www.oac.uci.edu/indiv/ehood/man2html.html">man2html</a>
+</ADDRESS>
+</BODY>
+</HTML>

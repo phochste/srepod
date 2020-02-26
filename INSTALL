@@ -1,0 +1,140 @@
+/*
+ * $Id: INSTALL,v 1.10 2005/07/26 08:39:57 hochstenbach Exp $
+ *
+ * Patrick Hochstenbach <Patrick.Hochstenbach@UGent.be>
+ * Henry Jerez <hjerez@lanl.gov>
+ *
+ */
+
+* Installation of the package:
+
+    + Unpack the sources:
+
+	$ pwd
+	/tmp
+	$ gunzip -c srepod-X-X-Xa.tar.gz | tar xvf -
+
+    + Optionally edit the src/Makefile to change the INSTDIR (use absolute path, INSTDIR should *not* be the directory where you unpacked the software package)
+	
+	$ cd src
+	$ make clean
+
+    (The following command may need root privileges)
+
+	# make 
+	# make install
+
+* Configuration
+
+    + Edit the configuration of your web server. Add a 'gateway' symbolic link 
+    from your cgi-bin directory to the cgi-bin directory of this package. 
+    Add a gateway' symbolic link from your htdocs directory to the htdocs 
+    directory of this package. E.g.
+
+        $ cd /usr/local/apache/cgi-bin
+        $ ln -s /opt/srepod-2-X-X/cgi-bin gateway
+        $ cd /usr/local/apache/htdocs
+        $ ln -s /opt/srepod-2-X-X/htdocs gateway
+	
+    (Make sure it is allowed to FollowSymlinks in the cgi-bin and htdocs 
+    directory of your Apache installation)
+		
+    + Edit cgi-bin/environ:
+		
+	  ** set the correct GWBASEURL and GWREGISTRY URL's and GWHOME path.
+	  ** set a correct GWADMIN email address
+	  ** set the GWVALIDBASEURL=0 to test your installation, set the
+	     GWVALIDBASEURL=1 in production mode
+
+    + Edit the files ${GWHOME}/htdocs/registry.html and ${GWHOME}/htdocs/terminator.html
+    to reflect the right location of the gateway CGI scripts.
+
+    + Run "sh chmod.sh" as root. Set here the user and group name that 
+    will run cgi scripts. This is normally the 'nobody' user and 'nobody' 
+    group.
+
+    Remark: 
+
+    It is possible to run the chmod.sh without having root access. 
+    You have to fill in your user name and user group at the command 
+    prompts. This will configure the gateway package to run the
+    daemon processes with your own privileges instead that of nobody. 
+    This method is discouraged because of its security implications.
+
+* Operation
+	
+    + Start the daemon:
+
+        $ cd /opt/srepod-2-X-X/bin
+	    $ su
+	    # ./deamonctl start
+
+    + Connect to:
+
+        http://<your_server>/gateway/
+
+* Checking of Valid Base URL's
+
+As specified in the Static Repository Guidelines: the baseURL written inside
+a Static Repository file must "match the Static Repository base URL at which 
+the Static Repository is available through intermediation from a Static Repository 
+Gateway". This means that if the GWBASEURL is:
+
+
+	http://gateway.org/cgi-bin/gateway/gateway.cgi
+
+
+and the Static Repository is located at:
+
+
+	http://somewhere.edu/~brown/repo.xml
+
+
+then this Static Repository should contain a 'oai:baseURL' element with value
+
+	http://gateway.org/cgi-bin/gateway/gateway.cgi/somewhere.edu/~brown/repo.xml
+
+to be valid. To test the installation of the LANL gateway we don't check the
+validity of baseURL by default. This way we can register quickly a few test 
+Static Repositories in the ${GWHOME}/htdocs directory without changing any of these
+files. In a production system you should set the GWVALIDBASEURL to 1. This
+validation check is very important a) when terminating a Static Repository file,
+b) preventing duplicate registrations of one Static Repository at two different
+gateways.
+
+* Terminating a Static Repository
+
+New in the beta release of the Static Repository Guidelines is the ability to
+de-register Static Repository files at a Gateway. A Static Repository administrator
+can do this by changing the 'oai:baseURL' element inside the Static Repository
+file (or just deleting the file) and sending a 'terminate' request to the gateway:
+
+	http://gateway.org/cgi-bin/gateway/gateway.cgi?terminate=http://somewhere.edu/~brown/repo.xml
+
+The LANL Gateway can automatically process termination request if the right conditions
+are met (see Guidelines). You need to set both GWVALIDBASEURL=1 and GWDOTERMINATE=1.
+
+In case you want to terminate Static Repository files manually, then run the
+${GWHOME}/bin/unregister.sh command. Be carefull however: you need to run this
+program with the same privileges as the srepod (daemon) process.
+
+* PURL
+
+Based on the two items above: 'Checking of Valid Base URL's' and 'Terminating a Static Repository'
+it is highly recommended that in a production environment you create a Persistent URL [PURL]
+(see: http://purl.oclc.org) to your Static Repository gateway. This PURL has to be set in
+the environ as ${GWBASEURL}. This way, if for some reason the Gateway should run on a different
+server, the Static Repository files would still be valid. Because they point to a PURL.
+
+Example. If:
+
+	http://gateway.org/cgi-bin/gateway/gateway.cgi
+
+is the old baseURL to the gateway. You could create a *partial redirect* PURL from:
+
+	http://purl.oclc.org/NET/my_project/gateway/
+
+to
+
+	http://gateway.org/cgi-bin/gateway/gateway.cgi/
+

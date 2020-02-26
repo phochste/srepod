@@ -1,0 +1,10 @@
+.\" Written by Patrick Hochstenbach <hochsten@lanl.gov>
+.TH crtsession 1 "5 December 2002" "crtsession" "crtsession manual"
+.SH NAME
+crtsession \- create a new lock file in the spool directory
+.SH SYNOPSIS
+.B LD_LIBRARY_PATH=../lib crtsession database_file http_address
+.SH DESCRIPTION
+This command creates a lock file in the spool directory. This lock file will ask the srepod daemon to fetch a fresh copy of the static repository from the network and install it as gdbm file in database_file.
+.SH BUGS
+No bugs known at this date. Please mail me <hochsten@lanl.gov> if you find some.

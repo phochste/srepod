@@ -1,0 +1,255 @@
+Tue Dec 19 09:17:53 CET 2006  Patrick.Hochstenbach@ugent.be
+	* Minor bug fixes
+    * Maintenance release
+	* Tagged the code sr2_1_6
+
+Tue Jul 26 09:56:47 CEST 2005 Patrick.Hochstenbach@ugent.be
+        * Changed layout HTML pages
+        * Change environ file to have correct version numbers
+          updated gateway locations to neutral 'localhost'
+	    * Fixed Makefile to do a better 'make clean'
+        * Changed the UPGRADE procedure
+    	* Tagged the code sr2_1_5
+
+Mon Jun 27 14:36:05 CEST 2005 Patrick.Hochstenbach@ugent.be
+    	* Fixed namespace program; namespace declarations and 
+      	  schemaLocations shouldn't be overwritten in metadata 
+      	  childs if they already exist 
+      	  [bug report from haejoong@ldc.upen.edu]
+    	* Tagged the code sr2_1_4
+
+Tue Jun  7 20:10:17 CEST 2005 Patrick.Hochstenbach@ugent.be
+    	* Fixed Last-Modified bug, should be case-insensitive
+      	  [bug report from haejoong@ldc.upen.edu]
+    	* Tagged the code sr2_1_3
+
+Thu Apr  7 11:04:43 CEST 2005 Patrick.Hochstenbach@ugent.be
+    	* Fixed buffer initalization bug in scan2.c [bug
+      	  report from haejoong@ldc.upen.edu]
+    	* Fixed parse failed bug in transform.c [bug report
+      	  from haejoong@ldc.upen.edu]
+    	* Tagged the code sr2_1_2
+
+Sat Jan 22 11:29:48 CET 2005 Patrick.Hochstenbach@ugent.be
+    	* Fixed the validurl program 
+    	* Tagged the code sr2_1_1
+
+Fri Apr  9 14:03:23 MDT 2004 hochsten@sci.kun.nl
+	* Added AUTHORS to packages
+	* Tagged the code sr2_1_0
+
+Wed Apr  7 13:33:26 MDT 2004 hochsten@sci.kun.nl
+	* Created INSTALL.html file
+
+Wed Mar 31 15:19:13 MST 2004 hochsten@sci.kun.nl
+	* Added terminator.cgi script
+	* Added termination support in the create_cache.sh
+	* Added optional termination and termination webpages
+	  to environ
+	* Updated documentation
+
+Sat Mar 20 13:19:06 MST 2004 hochsten@lanl.gov
+	* Added INSTALL to the $(INSTDIR)
+	* The gateway optionally uses an error.html template if the
+	  environmental variable GWERRORHTML is set
+	* Added support for the 'terminate' verb.
+	
+Sun Mar 14 15:48:17 MST 2004 hochsten@lanl.gov
+	* Added validurl binary
+	* Added (optionally) checking of valid baseURL's
+	  in static repository files [the check is mandatory in
+	  the beta release of the protocol specs]
+
+Sat Mar 13 08:59:57 MST 2004 hochsten@lanl.gov
+	* Deleted incorrect /tmp install 
+	* Edited INSTALL file
+	* Added chmod in registry.cgi, this way the friends.conf
+	  keeps the correct file permissions during registration
+	* Added functionality to the cconfig package to write
+	  changed configuration files back to disk
+	* Added support to delete (unregister) a static repository
+	  from the gateway
+
+Mon Dec 22 12:49:43 MST 2003 hochsten@lanl.gov
+	* Fixed the order in desc.conf
+
+Thu Dec  4 15:01:23 MST 2003 hochsten@lanl.gov
+	* Debugged the installation scripts so that installations
+	  in a non-default directory is somewhat easier.
+	* Tagged the code sr2_0_4  
+
+Tue Dec  2 16:59:15 MST 2003 hochsten@lanl.gov
+	* Added more elaborate error messages so that Internet Explorer
+	  users can see them.
+	* Tagged the code sr2_0_3
+
+Fri Oct 31 14:14:28 MST 2003 hochsten@lanl.gov
+	* Changed the timeout value for the up-to-date test to
+	  60 seconds.
+
+Thu Oct 30 21:25:23 MST 2003 hochsten@lanl.gov
+	* Fixed buffer overflow check in scan2.c.
+ 
+Thu Oct 30 20:29:37 MST 2003 hochsten@lanl.gov
+	* Fixed bug in schemaLocation, to many whitespace characters
+	  were eaten up during the Static Repository transformation.
+	* Tagged the code sr2_0_2.
+
+Tue Oct 14 16:35:36 MDT 2003 hochsten@lanl.gov
+	* The schema of the gateway description has changed.
+          A URL element inside gatewayDescription is not anymore
+	  needed.
+	* Tagged the code sr2_0_1.
+
+Tue Oct 14 13:56:05 MDT 2003 hochsten@lanl.gov
+	* Added support for the beta release of the static 
+   	  repository gateway specitication.
+	* Deleted support of alpha version registration process.
+	  The administrator of a static repository has to send
+	  an initiate request to the base URL of the gateway to
+	  start the registration process.
+	* Made the registration procedure more configurable. In the
+	  environ file you can specify which type of confirmation
+	  messages you want to send to the static repository 
+	  administrator before starting the registration process.
+	* Tagged the code sr2_0_0.
+	   
+Tue Sep 16 13:05:42 MDT 2003 hochsten@lanl.gov
+	* Fixed a bug in the hstrip function which prevented
+	  Static Repositories created with a '\r' eol parsed
+	  correctly.
+	* Tagged the code sr1_0_26  
+	
+Tue Sep 16 12:17:01 MDT 2003 hochsten@lanl.gov
+	* Fixed bug in the fixed code of Jul 3 which prevented
+	  metadata records been written to the dbf file
+	* Tagged the code sr1_0_25  
+
+Thu Jul  3 08:48:09 MDT 2003 hjerez@lanl.gov
+	* Fixed a bug in the transform_c code. Got corrupted
+	  databases if oai namespace elements were used in 
+	  the namespace of records
+
+Mon Jun 30 10:42:11 MDT 2003 hochsten@lanl.gov
+
+	* Fixed bug in namespace code, got a segmentation fault
+	  on empty namespace declarations.
+	* Added three new example repositories: vbns.xml vbns2.xml vbns3.xml
+	* Tagged the code sr1_0_23
+
+Tue Jun 24 12:07:40 MDT 2003 hochsten@lanl.gov
+
+	* Added LICENSE file, put code under BSD license
+	* Tagged the code sr1_0_22alpha
+	
+Tue Jun 24 09:19:37 MDT 2003 hochsten@lanl.gov
+
+	* The LAUR # 03-4183 has been assigned to:
+	  A C Implementation of an OAI-PMH Static Repository Gateway
+	* Tagged the code sr1_0_21alpha 
+
+Thu Apr  3 10:54:01 MST 2003 hochsten@lanl.gov
+
+	* Put some extra buffer overflow checks in
+	  the namespace code
+
+Wed Apr  2 14:26:06 MST 2003 hochsten@lanl.gov
+
+	* Fixed a bug in namespace code
+	* Created relative paths to the environ
+	  script in create_cache.sh. The srepod
+	  child will chdir to the spool directory
+	  at startup
+	* Tagged the code sr1_0_19alpha  
+
+Wed Apr  2 08:49:20 MST 2003 hochsten@lanl.gov
+
+	* Changed desc.conf, the admin email is now 
+	  configurable in the environ file
+	* Changed srepod.conf, the pathnames are not
+	  absolute anymore but set by the environ
+	  script.
+	* Fixed bug in the daemon, when checking for
+	  negative uid_t and gid_t we should cast
+	  them as int.
+	* Tagged the code sr1_0_18alpha  
+
+Tue Apr  1 14:39:33 MST 2003 hochsten@lanl.gov
+
+	* Changed the chmod.sh. The permissions for the
+	  sbin directory setsession was not set correctly
+	* Tagged the code sr1_0_17alpha
+	  
+Tue Apr  1 14:39:33 MST 2003 hochsten@lanl.gov
+
+	* Added Henry's transform code update to the tree.
+	  This will add functionality to copy comments and
+	  processing instructions to the gdbm cache file.
+	* Tagged the code sr1_0_16alpha
+
+Tue Apr  1 12:35:41 MST 2003 hochsten@lanl.gov
+
+	* Changed namespace code to include about containers
+	  to the namespace/schemaLocation declaration transform.
+	* Included expat 1.95.6 to the source tree. Version
+	  1.96.5 had some bugs on Solaris.
+	* Tagged the code sr1_0_15alpha  
+
+Mon Mar 31 08:50:44 MST 2003 hochsten@lanl.gov
+
+	* Deleted Sablotron-0.97 from source tree
+	* Create 'namespace' code to transform incomming static
+	  repository files. This program add's namespace
+	  declarations and schemaLocations to the record elements
+	  inthe repository. This way static repository files can
+	  be submitted with all declarations defined in the root
+	  element.
+	* Tagged the code sr1_0_14alpha
+
+Thu Mar 20 09:32:11 MST 2003 hochsten@lanl.gov
+	
+	* Added more security checks on incomming PATH_INFO's 
+	
+Thu Mar 13 10:38:40 MST 2003 hochsten@lanl.gov
+
+	* Added optional support for friends
+	* Deleted the hard coded requirements for oai_dc metadata
+	  (with help of Haejoong Lee <haejoong@unagi.cis.upenn.edu>).
+	* Changed chmod.sh to create world writable db subdirectories
+	  in case the software is installed without root privileges.
+	* Added Sablotron-0.97 in the source tree (experimental)
+	* Tagged the code sr1_0_13alpha
+
+Tue Feb 25 10:58:46 MST 2003 hochsten@lanl.gov
+
+	* Fixed a bug in the session library. Sessions were not
+	cleaned from memory when the daemon unlocks a session.
+	* Changed the OAI-PMH header to check for empty PATH_INFO
+	* Tagged the code sr1_0_12alpha
+
+Mon Feb 24 11:54:33 MST 2003 hochsten@lanl.gov
+
+	* Fixed a bug in the OAI-PMH header: the <request> element
+	  didn't contain the correct BASE_URL.
+	* Tagged the code sr1_0_11alpha
+
+Wed Feb 12 11:05:09 MST 2003 hochsten@lanl.gov
+
+	* Added GWWORLDACCESS parameter to cgi-bin/environ. This will
+	  ask the session library to write session files in the spool
+	  directory that are world writable/readable.
+	* Add an option to set uid = gid = -1 in the bin/srepod.conf.
+	  This will cause the daemon process to run without having
+	  root privileges.
+	* Changed the chmod.sh to set cgi-bin/environ and bin/srepod.conf
+	  if the user doesn't want to run the software with root
+	  privileges. Be aware, this will prevent the user to build
+	  a more secure processing environment (e.g. chroot).
+	
+Tue Feb 11 16:27:18 MST 2003 hochsten@lanl.gov
+
+	* Worked on Solaris port of the code
+	* Changed the session.c code. File locking is now done
+	  by a global hash (Solaris can't do locking within threads).
+	* Fixed a transform bug
+	* Tagged the code sr1_0_10alpha

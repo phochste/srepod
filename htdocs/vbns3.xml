@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sr:Repository xmlns:sr="http://www.openarchives.org/OAI/2.0/static-repository" 
+	    xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" 
+            xmlns:dc="http://purl.org/dc/elements/1.1/" 
+	    xmlns="http://info.internet.isi.edu:80/in-notes/rfc/files/rfc1807.txt" 
+            xmlns:oai="http://www.openarchives.org/OAI/2.0/" 
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/static-repository 
+                                http://www.openarchives.org/OAI/2.0/static-repository.xsd
+				http://www.openarchives.org/OAI/2.0/oai_dc/ 
+          			http://www.openarchives.org/OAI/2.0/oai_dc.xsd
+				http://info.internet.isi.edu:80/in-notes/rfc/files/rfc1807.txt
+         			http://www.openarchives.org/OAI/1.1/rfc1807.xsd
+				">
+  <sr:Identify>
+    <oai:repositoryName>Demo repository</oai:repositoryName>
+    <oai:baseURL>http://purl.oclc.org/NET/ugent/lib/srepod/dor2.ugent.be/gateway/vbns3.xml</oai:baseURL>
+    <oai:protocolVersion>2.0</oai:protocolVersion>
+    <oai:adminEmail>jondoe@oai.org</oai:adminEmail>
+    <oai:earliestDatestamp>2002-09-19</oai:earliestDatestamp>
+    <oai:deletedRecord>no</oai:deletedRecord>
+    <oai:granularity>YYYY-MM-DD</oai:granularity>
+  </sr:Identify>
+  <sr:ListMetadataFormats>
+    <oai:metadataFormat>
+      <oai:metadataPrefix>oai_dc</oai:metadataPrefix>
+      <oai:schema>http://www.openarchives.org/OAI/2.0/oai_dc.xsd</oai:schema>
+      <oai:metadataNamespace>http://www.openarchives.org/OAI/2.0/oai_dc/
+          </oai:metadataNamespace>
+    </oai:metadataFormat>
+    <oai:metadataFormat>
+      <oai:metadataPrefix>oai_rfc1807</oai:metadataPrefix>
+      <oai:schema>http://www.openarchives.org/OAI/1.1/rfc1807.xsd</oai:schema>
+      <oai:metadataNamespace>http://info.internet.isi.edu:80/in-notes/rfc/files/rfc1807.txt
+           </oai:metadataNamespace>
+    </oai:metadataFormat>
+  </sr:ListMetadataFormats>
+  <sr:ListRecords metadataPrefix="oai_dc">
+  <oai:record> 
+     <oai:header>
+       <oai:identifier>oai:arXiv:cs/0112017</oai:identifier> 
+       <oai:datestamp>2001-12-14</oai:datestamp>
+     </oai:header>
+     <oai:metadata>
+       <oai_dc:dc>
+         <dc:title>Using Structural Metadata to Localize Experience of 
+                   Digital Content</dc:title> 
+         <dc:creator>Dushay, Naomi</dc:creator>
+         <dc:subject>Digital Libraries</dc:subject> 
+         <dc:description>With the increasing technical sophistication of
+             both information consumers and providers, there is 
+             increasing demand for more meaningful experiences of digital 
+             information. We present a framework that separates digital 
+             object experience, or rendering, from digital object storage 
+             and manipulation, so the rendering can be tailored to 
+             particular communities of users.
+         </dc:description> 
+         <dc:description>Comment: 23 pages including 2 appendices, 
+             8 figures</dc:description> 
+         <dc:date>2001-12-14</dc:date>
+       </oai_dc:dc>
+     </oai:metadata>
+   </oai:record>  
+  </sr:ListRecords>
+  <sr:ListRecords metadataPrefix="oai_rfc1807">
+   <oai:record>
+     <oai:header>
+       <oai:identifier>oai:arXiv:hep-th/9901001</oai:identifier>
+       <oai:datestamp>1999-12-25</oai:datestamp>
+     </oai:header>
+     <oai:metadata>
+      <rfc1807>
+         <bib-version>v2</bib-version>
+         <id>hep-th/9901001</id>
+         <entry>January 1, 1999</entry>
+         <title>Investigations of Radioactivity</title>
+         <author>Ernest Rutherford</author>
+         <date>March 30, 1999</date>
+      </rfc1807>
+     </oai:metadata>
+     <oai:about>
+       <oai_dc:dc>
+         <dc:publisher>Los Alamos arXiv</dc:publisher>
+         <dc:rights>Metadata may be used without restrictions as long as 
+            the oai identifier remains attached to it.</dc:rights>
+       </oai_dc:dc>
+     </oai:about>
+   </oai:record>
+</sr:ListRecords>
+</sr:Repository>

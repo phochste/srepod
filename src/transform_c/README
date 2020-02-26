@@ -1,0 +1,48 @@
+/*
+ * $Id: README,v 1.1.1.1 2003/06/25 17:57:05 hochstenbach Exp $
+ */
+README
+
+This program was coded by Henry Nelson Jerez <hjerez@lanl.gov> , member of the Prototyping Team of  Los Alamos National Laboratory Research Library.
+It is responsible for parsing XML Static Repository documents into  GDBM cache files of the  Static Repository  Gateway  developed at the Prototyping Team .
+The program uses Expat parser libraries to go over the XML file and creates a series of fields in a GDBM database according to the following schema:
+NAME            DESCRIPTION
+------------------------------------------------------------
+crt             Creation time of database file in iso format
+frm             Network location of static repository
+grm             Granularity (in our case 'YYYY-MM-DD')
+dtf             Earliest date in repository
+dtl             Most recent date in repository
+nid             Number of unique identifiers in repository
+nst             Number of sets in repository (in our case 0)
+nfm             Number of metadata formats in repository
+idf             Content of Identify response ('<Identify><repositoryName>.....')
+set             Tab delimited list of setSpecs (in our case empty)
+fmt             Tab delimited list of allowed metadataPrefixes
+fmt:oai_dc      Part of ListMetadataFormat response for 'oai_dc' prefix
+                ('<metadataFormat><metadataPrefix>oai_dc.....</metadataFormat>')
+fmt:<prefix>    Part of ListMetadataFormat response for <prefix> prefix
+
+fmt:<identifier> Tab delimited list of valid metadataPrefix for
+                 <identifier> (tells me what combination of identifier and
+                 metadataPrefix can be used in GetRecord).
+                 E.g 'fmt:00001' = 'oai_dc\toai_marc' 
+dat:<identifier> Datestamp of <identifier>               
+
+xml:<prefix>:<identifier>       The <record> element plus contents for this
+                metadataPrefix <prefix> and identifier <identifier> combination
+mod            Last update of the static repository in local UNIX time.
+
+OBSERVATIONS
+
+The program looks for a static repository  structure in the documents and generates fields in a GDBM database based on its discoveries.  
+The parser has a 2 MB limit on the maximum size of each record in the Static Repository as it is specified on the Static Repository  implementation.
+The Parser could also be used to operate over restricted parts of a document by modifying the ROOT_NAME definition inside the source code.
+
+EXECUTION 
+
+The parser program , requires 3 arguments to operate: The XML file , The Output DB  and the Network location of the static repository . 
+The GWBASE environment variable specifying the current base url for the gateway is also required.
+Eg:
+export GWBASEURL= http://lwww.lanl.gov/gateway
+parser staticrepodemo.xml staticrepo.dbf http://someserver.hosting.thefile.net/staticrepo/repo.xml

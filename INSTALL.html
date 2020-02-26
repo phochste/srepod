@@ -1,0 +1,302 @@
+<!-- $Id: INSTALL.html,v 1.3 2006/12/19 08:33:10 hochstenbach Exp $ -->
+<html>
+<head><title>OAI-PMH Static Repository Gateway</title></head>
+<body>
+
+
+<font face="arial,helvetica,sans-serif">
+
+<img align="middle" src="htdocs/logo-proto.png" alt="logo lanl prototype team"><font size="5"><b>OAI Static Repository &amp; OAI Static Repository Gateway</b></font> 
+
+<h2>OAI Static Repository</h2>
+
+<p>
+A file based approach to expose metadata using the OAI-PMH protocol. As written in the OAI FAQ "<i>[t]he
+Open Archives Initiative develops and promotes interoperability
+standards that aim to facilitate the efficient dissemination of content</i>".
+The OAI defines two parties in the exchange of content: 1) the Data
+Provider who exposes metadata to the world using the OAI-PMH protocol,
+2) the Service Provider who uses the metadata harvested via the OAI-PMH
+as a basis for building value-added services. The OAI community members
+implemented several <a href="http://www.openarchives.org/tools/tools.html">tools</a> 
+for both Data Providers and Service Providers to exchange metadata using OAI-PMH.<br />
+The OAI Static Repository and OAI Static Repository Gateway is a low
+barrier solution for Data Providers to make metadata collections
+available to the world. The Data Provider writes an XML file with a
+specific format - an OAI Static Repository - which is made OAI-PMH
+harvestable through intermediation of software - an OAI Static
+Repository Gateway - operated by a third party.
+</p>
+
+<h3>Specs</h3>
+
+<ul>
+  <li><a href="http://www.openarchives.org/OAI/openarchivesprotocol.html">Specification of the OAI-PMH protocol</a></li>
+  <li><a href="http://www.openarchives.org/OAI/2.0/guidelines-static-repository.htm">Specification of the OAI Static Repository and Gateway - beta version</a></li>
+</ul>
+
+<h3>Papers</h3>
+
+<ul>
+  <li><i>The OAI-PMH Static Repository and Static Repository Gateway</i> - Patrick Hochstenbach, Henry Jerez, Herbert Van de Sompel [<a href="http://lib-www.lanl.gov/%7Eherbertv/papers/jcdl2003-submitted-draft.pdf">PDF</a>] - Paper presented at <a href="http://www.rice.edu/jcdl03/">JCDL 2003</a></li>
+</ul>
+
+<h2>Experimental OAI Static Repository Gateway at LANL</h2>
+
+<h3>Register your OAI Static Repository at our experimental OAI Static Repository Gateway</h3>
+
+<ul>
+  <li>Static Repository Gateway Base URL: <b>http://libtest.lanl.gov/cgi-bin/gateway.cgi</b>.</li>
+  <li>Register your Static Repository <a href="http://libtest.lanl.gov/registry.htm">here</a>.</li>
+</ul>
+	
+<h3>OAI Static Repository Gateway demo</h3>
+
+<img align="left" src="htdocs/static-repository.jpg">
+
+The base URL of the experimental Static Repository Gateway is <a href="http://libtest.lanl.gov/cgi-bin/gateway.cgi">http://libtest.lanl.gov/cgi-bin/gateway.cgi</a>. 
+
+<p>
+Some sample - pre-registered - OAI Static Repositories are available at:
+</p>
+
+<ul>
+  <li><a href="http://libtest.lanl.gov/vb1.xml">http://libtest.lanl.gov/vb1.xml</a></li>
+  <li><a href="http://libtest.lanl.gov/vb2.xml">http://libtest.lanl.gov/vb2.xml</a></li>
+  <li><a href="http://lib-www.lanl.gov/%7Ehochsten/desktop.xml">http://lib-www.lanl.gov/~hochsten/desktop.xml</a></li>
+</ul>
+
+<p>
+Following the guidelines of the OAI Static Repository specification, the 
+Gateway with base URL <a href="http://libtest.lanl.gov/cgi-bin/gateway.cgi">http://libtest.lanl.gov/cgi-bin/gateway.cgi</a> 
+makes the above OAI Static Repositories harvestable respectively at the 
+following OAI base URLs:
+</p>
+
+<ul>
+  <li>http://libtest.lanl.gov/cgi-bin/gateway.cgi/libtest.lanl.gov/vb1.xml</li>
+  <li>http://libtest.lanl.gov/cgi-bin/gateway.cgi/libtest.lanl.gov/vb2.xml</li>
+  <li>http://libtest.lanl.gov/cgi-bin/gateway.cgi/lib-www.lanl.gov/~hochsten/desktop.xml</li>
+</ul>
+
+<p>
+Here are some sample OAI-PMH requests made through the Gateway to the the above OAI Static Repositories:
+</p>
+
+<ul>
+ <li><a href="http://libtest.lanl.gov/cgi-bin/gateway.cgi/libtest.lanl.gov/vb1.xml?verb=Identify">http://libtest.lanl.gov/cgi-bin/gateway.cgi/libtest.lanl.gov/vb1.xml?verb=Identify</a></li>
+ <li><a href="http://libtest.lanl.gov/cgi-bin/gateway.cgi/libtest.lanl.gov/vb1.xml?verb=ListMetadataFormats">http://libtest.lanl.gov/cgi-bin/gateway.cgi/libtest.lanl.gov/vb1.xml?verb=ListMetadataFormats</a></li>
+ <li><a href="http://libtest.lanl.gov/cgi-bin/gateway.cgi/lib-www.lanl.gov/%7Ehochsten/desktop.xml?verb=ListRecords&amp;metadataPrefix=oai_dc">http://libtest.lanl.gov/cgi-bin/gateway.cgi/lib-www.lanl.gov/~hochsten/desktop.xml?verb=ListRecords&amp;metadataPrefix=oai_dc</a></li>
+</ul>
+
+<h2>Run Your Own OAI Static Repository Gateway</h2>
+
+We release the experimental LANL Gateway software used as a proof of concept to the
+OAI community. This software is Open Source. You are free to download
+it, install it on your server and make changes to it. As this is
+experimental beta code we encourage to use this software package as
+inspiration to build your own OAI Static Repository Gateways.
+
+<h3>Installation</h3>
+
+<ol>
+	<li><a href="https://sourceforge.net/projects/srepod/">Download</a> the <i>srepod-2-X-Xa.tar.gz</i> package from SourceForge.</li>
+	<li>Unpack the distribution:
+<pre>
+<tt>
+gunzip -c srepod-2-X-Xa.tar.gz | tar xvf -
+</tt>
+</pre>
+	</li>
+	<li>Change directory to 'srepod':
+<pre>
+<tt>
+cd srepod
+</tt>
+</pre>
+	</li>
+	<li>Edit the file 'src/Makefile' change the <b>INSTDIR</b> variable to an appropiate installation
+directory for this package. [<i>Note: the INSTDIR should *not* be the same as the directory where you 
+unpacked the sources</i>]</li>
+	<li>Compile and install:
+<pre>
+<tt>
+	make clean
+	make
+	make install
+</tt>
+</pre></li>
+	<li>Change directory to your installation directory:
+<pre>
+<tt>
+	cd /lanl/srepod
+</tt>
+</pre>
+	</li>
+	<li>Edit the file <tt>cgi-bin/environ</tt> edit the variables:
+	<p>
+		<ul>
+		 <li><tt>GWADMIN</tt> - email address of the gateway administrator,</li>
+		 <li><tt>GWBASEURL</tt> - base URL of the gateway OAI-PMH interface,</li>
+		 <li><tt>GWREGISTRY</tt> - URL of the gateway registration interface,</li>
+		 <li><tt>GWTERMINATOR</tt> - URL of the gateway termination interface,</li>
+		 <li><tt>GWHOME</tt> - installation directory of the srepod package.</li>
+		</ul>
+	</p>
+	</li>
+    	<li>Edit the configuration of your web server. Add a 'gateway' symbolic link 
+    	from your <tt>cgi-bin</tt> directory to the <tt>cgi-bin</tt> directory of this package. 
+    	Add a gateway' symbolic link from your htdocs directory to the htdocs 
+    	directory of this package. E.g.
+<pre>
+<tt>
+        cd /usr/local/apache/cgi-bin
+        ln -s /lanl/srepod/cgi-bin gateway
+        cd /usr/local/apache/htdocs
+        ln -s /lanl/srepod/htdocs gateway
+</tt>
+</pre>
+        
+    (Make sure it is allowed to FollowSymlinks in the <tt>cgi-bin</tt> and <tt>htdocs</tt> directory of your Apache installation)</li>
+    	</li>
+	<li>To run the srepod package on your system you need to start up a daemon <i>srepod</i>. This daemon
+	will create cache files of OAI static repositories on your system. It is strongly recommended to run this
+	daemon with the same priviliges as the Apache daemon. But we allow to run this daemon also with normal
+	user privileges.<br>
+	If you want to run the daemon with the same privileges as the Apache daemon, then
+	you need to run the script <tt>chmod.sh</tt> as root and fill in the username and group of the Apache
+	process:
+<pre>
+<tt>
+	su
+	sh chmod.sh
+	Enter the user name or id of the process running cgi scripts: [nobody] <b>nobody</b>
+	Enter the group name or id of the process running cgi scripts: [nobody] <b>nogroup</b>
+</tt>
+</pre>
+	If you want to run the daemon with your own privileges, then you need to run the script <tt>chmod.sh</tt>
+	and fill in your username and group (beware this will create world writable directories and files
+	in the installation directory):
+<pre>
+<tt>
+	sh chmod.sh
+	Enter the user name or id of the process running cgi scripts: [nobody] <b>hochsten</b>
+	Enter the group name or id of the process running cgi scripts: [nobody] <b>proto</b>
+</tt>
+</pre>
+
+	</li>
+	<li>Start up the srepod daemon (you may need root privileges based on installation method above):
+<pre><tt>
+	cd /lanl/srepod/bin
+	./deamonctl start
+</tt>
+</pre>
+	</li>
+	<li>Your are now ready to register your first Static Repository file at your LANL Gateway. Issue this request
+in a browser:
+<pre>
+<tt>http://&lt;your_server&gt;/gateway/gateway.cgi?initiate=http://&lt;your_server&gt;/gateway/vb1.xml</tt>
+</pre>
+	</li>
+</ol>
+
+<h3>Post-Installation</h3>
+
+<h4>Valid OAI-PMH Base URL's</h4>
+
+<p>
+As specified in the Static Repository Guidelines: the baseURL written inside
+a Static Repository file "<i>must match the Static Repository base URL at which
+the Static Repository is available through intermediation from a Static Repository
+Gateway</i>". This means that if in your installation the <tt>GWBASEURL</tt> was set to:
+                                                                                                                    
+<pre> 
+<tt>                                                                                                                    
+http://gateway.org/cgi-bin/gateway/gateway.cgi
+</tt>
+</pre>
+                                                                                                                     
+and the Static Repository file is located at:
+                                                                                                                     
+<pre>
+<tt>
+http://somewhere.edu/~brown/repo.xml
+</tt>
+</pre>
+                                                                                                                     
+then this Static Repository file should contain a 'oai:baseURL' element with value
+
+<pre>
+<tt>                                                                                                                     
+http://gateway.org/cgi-bin/gateway/gateway.cgi/somewhere.edu/~brown/repo.xml
+</tt>
+</pre>
+                                                                                                                     
+to be valid. The <tt>Identify</tt> section of Static Repository file should look like this:
+
+<pre>
+<tt>
+&lt;Identify&gt;
+    &lt;oai:repositoryName&gt;Demo repository&lt;/oai:repositoryName&gt;
+    &lt;oai:baseURL&gt;<b>http://gateway.org/cgi-bin/gateway/gateway.cgi/somewhere.edu/~brown/repo.xml</b>&lt;/oai:baseURL&gt;
+    &lt;oai:protocolVersion&gt;2.0&lt;/oai:protocolVersion&gt;
+    &lt;oai:adminEmail&gt;jondoe@oai.org&lt;/oai:adminEmail&gt;
+    &lt;oai:earliestDatestamp&gt;2002-09-19&lt;/oai:earliestDatestamp&gt;
+    &lt;oai:deletedRecord&gt;no&lt;/oai:deletedRecord&gt;
+    &lt;oai:granularity&gt;YYYY-MM-DD&lt;/oai:granularity&gt;
+&lt;/Identify&gt;`
+</tt>
+</pre>
+
+</p>
+
+<p>
+To test the installation of the LANL Gateway we don't check the
+validity of baseURL by default. This way we can register quickly a few test
+Static Repositories in the ${GWHOME}/htdocs directory without changing any of these
+files. In a production system you should set the GWVALIDBASEURL to 1. This
+validation check is very important a) when terminating a Static Repository file,
+b) preventing duplicate registrations of a Static Repository File at two different
+gateways.
+</p>
+
+<h4>Terminating a Static Repository</h4>
+
+<p>
+New in the beta release of the Static Repository Guidelines is the ability to
+de-register Static Repository files at a Gateway. A Static Repository administrator
+can do this by changing the 'oai:baseURL' element inside the Static Repository
+file (or just deleting the file) and sending a 'terminate' request to the gateway:
+</p>
+                                                                                                                     
+<pre>
+<tt>
+http://gateway.org/cgi-bin/gateway/gateway.cgi?terminate=http://somewhere.edu/~brown/repo.xml
+</tt>
+</pre>
+                                                                                                                     
+<p>
+The LANL Gateway can automatically process termination request if the right conditions
+are met (see Guidelines). You need to set both GWVALIDBASEURL=1 and GWDOTERMINATE=1.
+</p>
+   
+<p>                                                                                                                  
+In case you want to terminate Static Repository files manually, then run the
+${GWHOME}/bin/unregister.sh command. Be carefull however: you need to run this
+program with the same privileges as the srepod (daemon) process.
+</p>
+
+<h3>Contact info</h3>
+
+<p>
+Patrick Hochstenbach &lt;Patrick.Hochstenbach@UGent.be&gt; -- Henry Jerez &lt;hjerez@lanl.gov&gt; -- Herbert Van de Sompel &lt;herbertv@lanl.gov&gt;
+</p>
+
+<p>
+<a href="http://sourceforge.net/"><img border="0" src="htdocs/logo-sf.png"></a>
+</p>
+
+</font>
+
+</body></html>

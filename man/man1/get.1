@@ -1,0 +1,40 @@
+.\" Written by Patrick Hochstenbach <hochsten@lanl.gov>
+.TH get 1 "5 December 2002" "get 0.0.1" "get manual"
+.SH NAME
+get \- a trivial WWW user agent
+.SH SYNOPSIS
+.B get [options] http_address
+.SH DESCRIPTION
+This command is part of the srepod package and is used to fetch static
+repositories from the network. It is a stripped down implementation
+of the curl interface.
+.SH OPTIONS
+.IP "-h"
+Include the header in the ourput
+.IP "-p"
+Try to bypass proxy servers
+.IP "-o file"
+Write the output to this file.
+.IP "-s maxsize"
+Maximum number of bytes to read from the network.
+.IP "-t seconds"
+Maximum number of seconds this program can run.
+.SH "EXIT VALUES"
+.IP 0
+Success
+.IP 1
+Invalid command line arguments.
+.IP 2
+Output file can't be created.
+.IP 3
+Timeout value reached.
+.IP 4
+Maxsize value reached.
+.IP 5
+Internal error.
+.SH "SEE ALSO"
+.BR curl (1),
+.BR GET (1),
+.BR wget (1)
+.SH BUGS
+No bugs known at this date. Please mail me <hochsten@lanl.gov> if you find some.

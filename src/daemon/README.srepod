@@ -1,0 +1,25 @@
+/*
+ *
+ * $Id: README.srepod,v 1.2 2006/12/19 08:33:14 hochstenbach Exp $
+ *
+ * Patrick Hochstenbach <Patrick.Hochstenbach@UGent.be> December 2002
+ *
+ */
+
+
+ - Use the daemonctl script to boot the srepod daemon.
+ - The daemonctl should be run as root.
+ - To kill the srepod daemon send a SIGUSR1 to the pid of
+   the daemon. E.g.
+
+   	kill -USR1 <daemon_pid>
+
+ - This daemon runs the create_cache.sh command as user id specified 
+   in the configuration file.
+
+	create_cache.sh <cache-file> <url>
+
+ - The spool and db directories (and sub directories) should be writable
+   and readable by the user id as specified in the configuration file.
+
+

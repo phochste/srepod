@@ -1,0 +1,13 @@
+/*
+ *
+ * $Id: README.gateway,v 1.2 2006/12/19 08:33:11 hochstenbach Exp $
+ *
+ * Patrick Hochstenbach <Patrick.Hochstenbach@UGent.be> December 2002
+ *
+ */
+
+ - The gateway.cgi should have read and write access to the
+   spool directory and read access to all gdbm files. 
+
+ - The gateway.conf, desc.conf and friends.conf should be writable
+   for the process executing registry.cgi
