@@ -18,7 +18,6 @@ INSTALL_DATA = @INSTALL_DATA@
 #BINOWN = bin
 #BINGRP = bin
 
-MAKEINFO = makeinfo
 TEXI2DVI = texi2dvi
 
 DEFS =
@@ -40,7 +39,6 @@ libdir = @libdir@
 # The include directory for gdbm.h and dbm.h.
 includedir = @includedir@
 # Info and man directories.
-infodir = @infodir@
 man3dir = @mandir@/man3
 manext = 3
 
@@ -95,8 +93,6 @@ GDBM_LOF = gdbmopen.lo gdbmdelete.lo gdbmfetch.lo  gdbmstore.lo gdbmclose.lo \
 TEX_F = gdbm.aux gdbm.cp gdbm.dvi gdbm.fn gdbm.ky gdbm.log gdbm.pg \
 	gdbm.toc gdbm.tp gdbm.vr
 
-TEXI_F = gdbm.info
-     
 SRCS = $(DBM_CF) $(NDBM_CF) $(GDBM_CF) $(TEST_CF)
 
 # The old all in one library:
@@ -114,8 +110,8 @@ C_LOBJS = $(DBM_LOF) $(NDBM_LOF)
 HDRS = gdbmdefs.h extern.h gdbmerrno.h systems.h dbm.h ndbm.h gdbmconst.h \
 	proto.h
 
-MSCFILES = COPYING ChangeLog Makefile.in README gdbm.3 gdbm.texinfo \
-	gdbm.info NEWS INSTALL gdbm.proto gdbm.proto2 conv2gdbm.c \
+MSCFILES = COPYING ChangeLog Makefile.in README gdbm.3 \
+	NEWS INSTALL gdbm.proto gdbm.proto2 conv2gdbm.c \
 	configure configure.in getopt.c getopt.h samp1.cc \
 	autoconf.h.in install-sh mkinstalldirs config.guess config.sub \
 	aclocal.m4 ltconfig ltmain.sh
@@ -126,17 +122,14 @@ all: libgdbm.la libgdbm_compat.la
 
 progs: $(PROGS)
 
-install: libgdbm.la gdbm.h gdbm.info
+install: libgdbm.la gdbm.h 
 	$(srcdir)/mkinstalldirs $(INSTALL_ROOT)$(libdir) \
-		$(INSTALL_ROOT)$(includedir) $(INSTALL_ROOT)$(man3dir) \
-		$(INSTALL_ROOT)$(infodir)
+		$(INSTALL_ROOT)$(includedir) $(INSTALL_ROOT)$(man3dir) 
 	$(LIBTOOL) $(INSTALL) -c libgdbm.la $(INSTALL_ROOT)$(libdir)/libgdbm.la
 	$(INSTALL_DATA)  gdbm.h \
 		$(INSTALL_ROOT)$(includedir)/gdbm.h
 	$(INSTALL_DATA)  $(srcdir)/gdbm.3 \
 		$(INSTALL_ROOT)$(man3dir)/gdbm.3
-	$(INSTALL_DATA)  $(srcdir)/gdbm.info \
-		$(INSTALL_ROOT)$(infodir)/gdbm.info
 
 install-compat:
 	$(srcdir)/mkinstalldirs $(INSTALL_ROOT)$(libdir) \
@@ -203,15 +196,7 @@ lintgdbm:
 TAGS: $(SRCS)
 	etags $(SRCS)
 
-info: gdbm.info
-
-gdbm.info: gdbm.texinfo
-	$(MAKEINFO) $(srcdir)/gdbm.texinfo
-
 dvi: gdbm.dvi
-
-gdbm.dvi: gdbm.texinfo
-	$(TEXI2DVI) $(srcdir)/gdbm.texinfo
 
 clean:
 	rm -rf $(PROGS) $(TEX_F) *.a *.la *.o *.lo core *.core junk* \
