@@ -6,6 +6,10 @@
  *
  */
 
+* Dependencies
+
+    $ sudo apt-get install build-essential texinfo
+
 * Installation of the package:
 
     + Unpack the sources:
